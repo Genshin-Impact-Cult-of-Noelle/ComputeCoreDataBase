@@ -1,8 +1,8 @@
 /*
  * @Date: 2022-01-21 16:38:20
  * @LastEditors: YueAo7
- * @LastEditTime: 2022-01-24 18:04:22
- * @FilePath: \noelleCoreDataBase\src\角色\岩\双手剑\诺艾尔.ts
+ * @LastEditTime: 2022-01-25 14:02:38
+ * @FilePath: \noelle-core-db\src\角色\岩\双手剑\诺艾尔.ts
  */
 import Noelle from "noelle-core"
 const { Tool: { getFrame, DMGRate }, Class: { Damage, Buff, Prop } } = Noelle
@@ -37,7 +37,7 @@ const Burst: Noelle.Type.Skill = {
             }
             CD = 900 * (1 - from.Last.coolDownRate.Last) + t
             const buff = new Buff(skillLabel, "object", getFrame(t, 12), (buffObj) => {
-                buff.modifyDMG = (cmd, time, DMG?) => {
+                buffObj.modifyDMG = (cmd, time, DMG?) => {
                     if (DMG&&(DMG.DMGType === "ATKNORMAL" || DMG.DMGType === "ATKDOWN" || DMG.DMGType === "ATKBASH")) {
                         DMG.ElementType = "Geo"
                     }
