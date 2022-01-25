@@ -22,7 +22,7 @@
   },
   "scripts": {
     "test": "npm run build && node main",
-    "build": "webpack && tsc --declarationDir ./main/types",
+    "build": "webpack && tsc ",
     "update": "npm run build  && npm publish",
     "ftest": "node main"
   },
@@ -42,8 +42,5 @@
     "compilerOptions": {
       "esModuleInterop": true
     }
-  },
-  "dependencies": {
-    "noelle-core": "^0.4.6-beta"
   }
 }

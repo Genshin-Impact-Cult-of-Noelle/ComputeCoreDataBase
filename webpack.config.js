@@ -4,7 +4,7 @@
  * @Autor: Do not edit
  * @Date: 2021-11-05 14:41:28
  * @LastEditors: YueAo7
- * @LastEditTime: 2022-01-24 16:29:52
+ * @LastEditTime: 2022-01-25 09:39:00
  */
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -33,14 +33,12 @@ module.exports = {
     output: {
         filename: 'index.js',
         path: path.resolve(__dirname, './main'),
-        // library:{
-        //     root:"NoelleCore",
-        //     comonjs:"noelle-core",
-        //     amd:"noelle-core"
-        // },
         libraryTarget: 'commonjs',
     },
-    plugins:[
+    externals: {
+        "noelle-core": 'noelle-core',
+    },
+    plugins: [
         new CleanWebpackPlugin(),
     ]
 };
