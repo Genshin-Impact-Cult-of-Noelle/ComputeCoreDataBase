@@ -1,11 +1,11 @@
 /*
  * @Date: 2022-01-20 10:05:29
  * @LastEditors: YueAo7
- * @LastEditTime: 2022-01-24 18:54:45
- * @FilePath: \noelleCoreDataBase\src\武器\双手剑\白影剑.ts
+ * @LastEditTime: 2022-01-25 18:43:43
+ * @FilePath: \noelle-core-db\src\武器\双手剑\白影剑.ts
  */
-import Noelle,{} from "noelle-core"
-const { Tool: { getFrame, DMGRate }, Class: { Damage, Buff, Prop },ConstData:{WeaponExtarArr} } = Noelle
+import Noelle from "noelle-core"
+const { Tool: { getFrame, DMGRate }, Class: { Damage, Buff, Prop }, ConstData: { WeaponExtraArr } } = Noelle
 const weaponName = "白影剑",
     skillName = "注能之锋",
     rate = [0.06, 0.075, 0.09, 0.105, 0.12]
@@ -13,15 +13,15 @@ let buffCount = 0,
     CD = 0,
     deadTime = 0
 export const 白影剑: Noelle.Type.Weapon = {
-    doc:"简简单单白影剑",
+    doc: "简简单单白影剑",
     type: "weapon",
     weapon: {
         levelData: {
             atk: {
-                base: WeaponExtarArr.S4M42
+                base: WeaponExtraArr.S4M42
             },
             critRate: {
-                extra: WeaponExtarArr.EP133
+                extra: WeaponExtraArr.EP133
             }
         },
         name: weaponName,
@@ -30,8 +30,8 @@ export const 白影剑: Noelle.Type.Weapon = {
     },
     skill: {
         name: weaponName,
-        init(skill){
-            skill.fnc=(from, to, t, lv = 1) => {
+        init(skill) {
+            skill.fnc = (from, to, t, lv = 1) => {
                 const weaponBuff = new Buff(weaponName, "object", "never", (b) => {
                     b.frameFnc = (frame) => {
                         CD && CD--
@@ -41,8 +41,7 @@ export const 白影剑: Noelle.Type.Weapon = {
                         }
                     }
                     b.modifyDMG = (cmd, f, DMG) => {
-                        
-                        if (DMG&&(DMG.DMGType === "ATKNORMAL" || DMG.DMGType === "ATKBASH") && buffCount < 4 && !CD) {
+                        if (DMG && (DMG.DMGType === "ATKNORMAL" || DMG.DMGType === "ATKBASH") && buffCount < 4 && !CD) {
                             buffCount++
                             CD = 48
                             b.target.clean()
@@ -51,8 +50,8 @@ export const 白影剑: Noelle.Type.Weapon = {
                                 type = "rate"
                             b.target.atk.push(label, val, type)
                             b.target.def.push(label, val, type)
-                        }else{
-                            console.log("失败",buffCount);
+                        } else {
+                            console.log("失败", buffCount);
 
                         }
                         return DMG
@@ -62,6 +61,6 @@ export const 白影剑: Noelle.Type.Weapon = {
                 return {}
             }
         }
-        
+
     }
 }
