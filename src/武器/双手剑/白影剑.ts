@@ -1,8 +1,8 @@
 /*
  * @Date: 2022-01-20 10:05:29
  * @LastEditors: YueAo7
- * @LastEditTime: 2022-01-25 18:43:43
- * @FilePath: \noelle-core-db\src\武器\双手剑\白影剑.ts
+ * @LastEditTime: 2022-01-26 18:34:26
+ * @FilePath: \ComputeCoreDataBase\src\武器\双手剑\白影剑.ts
  */
 import Noelle from "noelle-core"
 const { Tool: { getFrame, DMGRate }, Class: { Damage, Buff, Prop }, ConstData: { WeaponExtraArr } } = Noelle
@@ -51,7 +51,6 @@ export const 白影剑: Noelle.Type.Weapon = {
                             b.target.atk.push(label, val, type)
                             b.target.def.push(label, val, type)
                         } else {
-                            console.log("失败", buffCount);
 
                         }
                         return DMG
