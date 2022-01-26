@@ -1,8 +1,8 @@
 /*
  * @Date: 2022-01-21 16:38:20
  * @LastEditors: YueAo7
- * @LastEditTime: 2022-01-25 14:02:38
- * @FilePath: \noelle-core-db\src\角色\岩\双手剑\诺艾尔.ts
+ * @LastEditTime: 2022-01-26 11:28:22
+ * @FilePath: \ComputeCoreDataBase\src\角色\岩\双手剑\诺艾尔.ts
  */
 import Noelle from "noelle-core"
 const { Tool: { getFrame, DMGRate }, Class: { Damage, Buff, Prop } } = Noelle
@@ -17,11 +17,7 @@ const burstData: Noelle.Type.SkillRate[] = [
             use: "atk",
             rate: [0.928, 0.9976, 1.0672, 1.16, 1.2296, 1.2992, 1.392, 1.4848, 1.5776, 1.6704, 1.7632, 1.856, 1.972, 2.088, 2.204]
         }
-        ],
-        delay: {
-            must: 130,
-            last: 130
-        }
+        ]
 
     }
 ]
@@ -38,7 +34,7 @@ const Burst: Noelle.Type.Skill = {
             CD = 900 * (1 - from.Last.coolDownRate.Last) + t
             const buff = new Buff(skillLabel, "object", getFrame(t, 12), (buffObj) => {
                 buffObj.modifyDMG = (cmd, time, DMG?) => {
-                    if (DMG&&(DMG.DMGType === "ATKNORMAL" || DMG.DMGType === "ATKDOWN" || DMG.DMGType === "ATKBASH")) {
+                    if (DMG && (DMG.DMGType === "ATKNORMAL" || DMG.DMGType === "ATKDOWN" || DMG.DMGType === "ATKBASH")) {
                         DMG.ElementType = "Geo"
                     }
                     return DMG
@@ -78,7 +74,6 @@ const atkdata: Noelle.Type.SkillRate[] = [
                 rate: [0.7912, 0.8556, 0.9200, 1.0120, 1.0764, 1.1500, 1.2512, 1.3524, 1.4536, 1.5640, 1.6744, 1.7848, 1.8952, 2.0056, 2.116],
             }
         ],
-        delay: { must: 20, last: 20 }
     },
     {
         row: [
@@ -87,7 +82,6 @@ const atkdata: Noelle.Type.SkillRate[] = [
                 rate: [0.7336, 0.7933, 0.853, 0.9383, 0.998, 1.0663, 1.1601, 1.2539, 1.3477, 1.4501, 1.5525, 1.6548, 1.7572, 1.8595, 1.9619],
             }
         ],
-        delay: { must: 20, last: 20 }
     },
     {
         row: [
@@ -96,7 +90,6 @@ const atkdata: Noelle.Type.SkillRate[] = [
                 rate: [0.8626, 0.9328, 1.003, 1.1033, 1.1735, 1.2538, 1.3641, 1.4744, 1.5847, 1.7051, 1.8255, 1.9458, 2.0662, 2.1865, 2.3069],
             }
         ],
-        delay: { must: 20, last: 20 }
     },
     {
         row: [
@@ -105,7 +98,6 @@ const atkdata: Noelle.Type.SkillRate[] = [
                 rate: [1.1343, 1.2267, 1.319, 1.4509, 1.5432, 1.6488, 1.7938, 1.9389, 2.084, 2.2423, 2.4006, 2.5589, 2.7171, 2.8754, 3.0337],
             }
         ],
-        delay: { must: 20, last: 20 }
     },
 ]
 const Attack: Noelle.Type.Skill = {
@@ -113,7 +105,7 @@ const Attack: Noelle.Type.Skill = {
     init(s) {
         s.fnc = (from, to, t, lv = 1) => {
             if (from.tag != to.tag) {
-                const DMG = new Damage(from, s, to, DMGRate(atkdata[atkCount], lv), "ATKNORMAL",from.character.core.nowBaseAtkElement)
+                const DMG = new Damage(from, s, to, DMGRate(atkdata[atkCount], lv), "ATKNORMAL", from.character.core.nowBaseAtkElement)
                 from.modifyDamage(DMG, t, "A")
                 to.pushDamage(DMG, t)
             }
@@ -121,8 +113,8 @@ const Attack: Noelle.Type.Skill = {
             atkCount %= 4
             return {
                 delay: {
-                    must: 120,
-                    last: 110
+                    must: 20,
+                    last: 20
                 }
             }
         }
@@ -138,11 +130,7 @@ const SkillData: Noelle.Type.SkillRate[] = [
                 use: "def",
                 rate: [1.2, 1.29, 1.38, 1.5, 1.59, 1.68, 1.8, 1.92, 2.04, 2.16, 2.28, 2.4, 2.55, 2.7, 2.85]
             },
-        ],
-        delay: {
-            must: 130,
-            last: 130
-        }
+        ]
 
     },
     {
@@ -152,10 +140,6 @@ const SkillData: Noelle.Type.SkillRate[] = [
                 rate: [1.2, 1.29, 1.38, 1.5, 1.59, 1.68, 1.8, 1.92, 2.04, 2.16, 2.28, 2.4, 2.55, 2.7, 2.85]
             },
         ],
-        delay: {
-            must: 130,
-            last: 130
-        }
 
     }
 ]
@@ -188,7 +172,7 @@ const Skill: Noelle.Type.Skill = {
     }
 }
 export const 诺艾尔: Noelle.Type.Character = {
-    doc:"简简单单诺艾尔",
+    doc: "简简单单诺艾尔",
     type: "character",
     character: {
         elementType: "Geo",
