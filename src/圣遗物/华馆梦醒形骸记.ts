@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-01-24 12:25:26
  * @LastEditors: YueAo7
- * @LastEditTime: 2022-01-26 13:51:46
+ * @LastEditTime: 2022-01-27 09:35:12
  * @FilePath: \ComputeCoreDataBase\src\圣遗物\华馆梦醒形骸记.ts
  */
 import Noelle from "noelle-core"
@@ -26,36 +26,36 @@ export const 华馆梦醒形骸记: Noelle.Type.ArtifactSet = {
                         let underTime = 0
                         buff.modifyDMG = (C, T, D) => {
                             if (D && D.ElementType === "Geo") {
-                                deadTime=0
+                                deadTime = 0
                                 if (count < 4) {
                                     count++
-                                    buff.target.elementDEFGeo = new Prop().push(ArtifactSetName + 4,count*0.06,"base")
-                                    buff.target.def =new Prop().add(Def).push(ArtifactSetName + 4,count*0.06,"rate") 
+                                    buff.target.elementDEFGeo = new Prop().push(ArtifactSetName + 4, count * 0.06, "base")
+                                    buff.target.def = new Prop().add(Def).push(ArtifactSetName + 4, count * 0.06, "rate")
                                 } else {
-                                    
+
                                 }
 
                             }
                             return D
                         }
-                        buff.frameFnc=(T)=>{
-                            if(!from.isNow){
-                                if (++deadTime>360) {
+                        buff.frameFnc = (T) => {
+                            if (!from.isNow) {
+                                if (++deadTime > 360) {
                                     deadTime = 0
-                                    count--
-                                    buff.target.elementDEFGeo = new Prop().push(ArtifactSetName + 4,count*0.06,"base")
-                                    buff.target.def =new Prop().add(Def).push(ArtifactSetName + 4,count*0.06,"rate") 
+                                    count && count--
+                                    buff.target.elementDEFGeo = new Prop().push(ArtifactSetName + 4, count * 0.06, "base")
+                                    buff.target.def = new Prop().add(Def).push(ArtifactSetName + 4, count * 0.06, "rate")
                                 }
-                            }else{
-                                if(++underTime>180){
-                                    underTime= 0 
-                                    count--
-                                    buff.target.elementDEFGeo = new Prop().push(ArtifactSetName + 4,count*0.06,"base")
-                                    buff.target.def =new Prop().add(Def).push(ArtifactSetName + 4,count*0.06,"rate") 
+                            } else {
+                                if (++underTime > 180) {
+                                    underTime = 0
+                                    count < 4 && count++
+                                    buff.target.elementDEFGeo = new Prop().push(ArtifactSetName + 4, count * 0.06, "base")
+                                    buff.target.def = new Prop().add(Def).push(ArtifactSetName + 4, count * 0.06, "rate")
                                 }
                             }
                         }
-                        
+
                     }
                     from.pushBuff("artifact", buff)
                 }
