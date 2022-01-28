@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-01-21 16:38:20
  * @LastEditors: YueAo7
- * @LastEditTime: 2022-01-26 11:28:22
+ * @LastEditTime: 2022-01-28 10:41:28
  * @FilePath: \ComputeCoreDataBase\src\角色\岩\双手剑\诺艾尔.ts
  */
 import Noelle from "noelle-core"
@@ -32,12 +32,15 @@ const Burst: Noelle.Type.Skill = {
                 console.warn("尚未冷却警告", skillLabel, "剩余时间", Math.floor(sum / 60), "秒", sum % 60, "帧")
             }
             CD = 900 * (1 - from.Last.coolDownRate.Last) + t
+            from.character.core.nowBaseAtkElement="Geo"
             const buff = new Buff(skillLabel, "object", getFrame(t, 12), (buffObj) => {
-                buffObj.modifyDMG = (cmd, time, DMG?) => {
-                    if (DMG && (DMG.DMGType === "ATKNORMAL" || DMG.DMGType === "ATKDOWN" || DMG.DMGType === "ATKBASH")) {
-                        DMG.ElementType = "Geo"
-                    }
-                    return DMG
+                buffObj.frameFnc=(F)=>{
+                    if(false){
+                        from.character.core.nowBaseAtkElement ="Physical"
+                    }else{
+                        from.character.core.nowBaseAtkElement ="Geo"
+
+                    }                    
                 }
             })
             const Character = from.character.core
@@ -113,8 +116,8 @@ const Attack: Noelle.Type.Skill = {
             atkCount %= 4
             return {
                 delay: {
-                    must: 20,
-                    last: 20
+                    must: 35,
+                    last: 40
                 }
             }
         }

@@ -4,7 +4,7 @@
  * @Autor: Do not edit
  * @Date: 2021-11-05 15:22:21
  * @LastEditors: YueAo7
- * @LastEditTime: 2022-01-26 18:33:58
+ * @LastEditTime: 2022-01-28 10:45:35
  */
 const fs  = require ("fs")
 // const Noelle = require("../../noelle-core-v2/main").default
@@ -13,7 +13,7 @@ require("../main")
 // Noelle.load(require("../main/index.js").default)
 // Noelle.load(require("../main/index.js").DX)
 const a = new Noelle.Action()
-a.do("元素爆发").do("普通攻击").do("元素爆发").do("普通攻击").do("元素爆发").do("普通攻击").do("元素爆发").do("普通攻击").do("元素爆发").do("普通攻击").do("元素爆发").do("普通攻击").do("元素爆发").do("普通攻击").do("元素爆发").do("普通攻击").do("元素爆发").do("普通攻击").do("元素爆发").do("普通攻击").do("元素爆发").do("普通攻击").do("元素爆发").do("普通攻击").do("元素爆发").do("普通攻击").do("元素爆发").do("普通攻击").do("元素爆发").do("普通攻击").do("元素爆发").do("普通攻击").do("元素爆发").do("普通攻击").do("元素爆发").do("普通攻击").do("元素爆发").do("普通攻击").do("元素爆发").do("普通攻击").do("普通攻击").do("普通攻击").do("普通攻击").do("普通攻击").do("普通攻击").do("普通攻击").do("元素爆发").do("普通攻击").do("普通攻击")
+a.do("元素爆发").do("普通攻击").do("普通攻击").do("普通攻击").do("普通攻击")
 const n = new  Noelle.Control("诺艾尔").setWeapon("白影剑",{level:90,extra:5})
 n
     .setArtifact({
@@ -88,8 +88,9 @@ n
     })
 const m = new  Noelle.Control("木桩")
 a.play(n,m)
+console.log(n.character.core.nowBaseAtkElement)
 console.log(n.Last.def.content)
-a
+m.DMGHistroy[m.DMGHistroy.length-1]
 
 
 // n.setWeapon("白影剑")
